@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENG Class</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+    /* Background — Iona deep navy/maroon to cosmic purple */
+    --navy:       #0A0612;
+    --navy-mid:   #0F0A1E;
+    --navy-card:  #160D2B;
+
+    /* Iona Brand + Cosmic Palette */
+    --blue:       #7C3AED;
+    --blue-light: #A855F7;
+    --cyan:       #C084FC;
+    --purple:     #7C3AED;
+    --pink:       #E879F9;
+
+    /* Iona Maroon Accent */
+    --maroon:     #8B1A4A;
+    --maroon-light: #C2185B;
+    --gold:       #F0C040;
+
+    /* Status */
+    --green:      #34D399;
+    --amber:      #FBBF24;
+    --red:        #F87171;
+
+    /* Text */
+    --white:      #F3EEFF;
+    --muted:      #C4B5D9;
+
+    /* Effects */
+    --border: rgba(168,85,247,.22);
+    --glow: rgba(124,58,237,.35);
+
+    /* Fonts */
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(10,6,18,.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: flex; align-items: center; gap: .5rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--cyan); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: linear-gradient(135deg, #7C3AED, #A855F7);
+      color: var(--white);
+      padding: .45rem 1.1rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s, transform .15s;
+      box-shadow: 0 0 18px rgba(124,58,237,.45);
+    }
+    .nav-cta:hover { opacity: .88; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% -10%, rgba(124,58,237,.28) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 45% at 85% 65%, rgba(232,121,249,.14) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 35% at 10% 70%, rgba(139,26,74,.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    /* Starfield dots */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, rgba(192,132,252,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 8%, rgba(192,132,252,.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 60% 15%, rgba(240,192,64,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 25%, rgba(192,132,252,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 50%, rgba(240,192,64,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 60%, rgba(192,132,252,.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 25% 75%, rgba(232,121,249,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 80%, rgba(192,132,252,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 90%, rgba(240,192,64,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 85%, rgba(192,132,252,.5) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--gold);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      max-width: 18ch;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--cyan); }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 52ch;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: linear-gradient(135deg, #7C3AED, #A855F7);
+      color: #fff;
+      padding: .7rem 1.6rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: .95rem;
+      transition: opacity .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 8px 28px rgba(124,58,237,.4);
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(124,58,237,.55); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: .7rem 1.6rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: .95rem;
+      border: 1px solid var(--border);
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue-light); background: rgba(124,58,237,.1); }
+
+    /* ── TERMINAL ── */
+    .terminal-wrap {
+      margin: 3.5rem auto 0;
+      width: 100%; max-width: 680px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(168,85,247,.3);
+      box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 40px rgba(124,58,237,.15);
+    }
+    .terminal-bar {
+      background: #1A0D35;
+      padding: .65rem 1rem;
+      display: flex; align-items: center; gap: .45rem;
+    }
+    .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red   { background: #FF5F57; }
+    .dot-amber { background: #FEBC2E; }
+    .dot-green { background: #28C840; }
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--muted);
+      margin-left: .5rem;
+    }
+    .terminal-body {
+      background: #0C0820;
+      padding: 1.4rem 1.6rem;
+      font-family: var(--font-mono);
+      font-size: .88rem;
+      line-height: 1.8;
+      text-align: left;
+      min-height: 180px;
+    }
+    .t-comment  { color: #6B5E8A; }
+    .t-keyword  { color: #E879F9; }
+    .t-fn       { color: #A855F7; }
+    .t-string   { color: var(--green); }
+    .t-num      { color: var(--gold); }
+    .t-out      { color: var(--cyan); }
+    #cursor {
+      display: inline-block;
+      width: 9px; height: 1.1em;
+      background: var(--cyan);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--gold);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      max-width: 52ch;
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── LESSONS ── */
+    #lessons { background: var(--navy); }
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .lesson-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem;
+      display: flex; flex-direction: column;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+      text-decoration: none; color: inherit;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue-light);
+      box-shadow: 0 16px 48px rgba(124,58,237,.2);
+    }
+    .lesson-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      padding: .25rem .6rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .badge-beginner  { background: rgba(52,211,153,.12); color: var(--green); }
+    .badge-mid       { background: rgba(168,85,247,.18); color: var(--blue-light); }
+    .badge-advanced  { background: rgba(240,192,64,.12); color: var(--gold); }
+    .lesson-card h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: .5rem;
+    }
+    .lesson-card p { color: var(--muted); font-size: .88rem; flex: 1; margin-bottom: 1.2rem; }
+    .lesson-links { display: flex; gap: .75rem; }
+    .lesson-link {
+      display: flex; align-items: center; gap: .35rem;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: .35rem .8rem;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .link-github { background: rgba(255,255,255,.07); color: var(--muted); }
+    .link-github:hover { background: rgba(255,255,255,.14); color: var(--white); }
+    .link-video  { background: rgba(232,121,249,.12); color: #E879F9; }
+    .link-video:hover  { background: rgba(232,121,249,.22); }
+    .link-readme { background: rgba(192,132,252,.12); color: var(--cyan); }
+    .link-readme:hover { background: rgba(192,132,252,.22); }
+
+    /* ── LESSONS 2 ── */
+    #lessons2 { background: var(--navy); }
+    .lessons2-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .lesson2-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem;
+      display: flex; flex-direction: column;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+      text-decoration: none; color: inherit;
+    }
+    .lesson2-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--pink);
+      box-shadow: 0 16px 48px rgba(232,121,249,.18);
+    }
+    .lesson2-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      padding: .25rem .6rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .lesson2-card h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: .5rem;
+    }
+    .lesson2-card p { color: var(--muted); font-size: .88rem; flex: 1; margin-bottom: 1.2rem; }
+    .lesson2-links { display: flex; gap: .75rem; }
+    .lesson2-link {
+      display: flex; align-items: center; gap: .35rem;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: .35rem .8rem;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    /* ── VIDEO MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,.88);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #0F0A1E;
+      border: 1px solid rgba(168,85,247,.35);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: min(92vw, 800px);
+      box-shadow: 0 0 60px rgba(124,58,237,.25);
+    }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .modal-header h4 { font-family: var(--font-display); font-size: 1rem; }
+    .modal-close {
+      background: none; border: none; color: var(--muted); font-size: 1.4rem;
+      cursor: pointer; transition: color .2s; line-height: 1;
+    }
+    .modal-close:hover { color: var(--white); }
+    .video-container {
+      position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden;
+    }
+    .video-container iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+    }
+
+    /* ── README MODAL ── */
+    .readme-modal-box {
+      background: #0C0820;
+      border: 1px solid rgba(168,85,247,.3);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: min(92vw, 720px);
+      max-height: 80vh;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: .82rem;
+      line-height: 1.8;
+      box-shadow: 0 0 60px rgba(124,58,237,.2);
+    }
+    .readme-modal-box h2 { font-family: var(--font-display); font-size: 1.3rem; color: var(--cyan); margin-bottom: 1rem; }
+    .readme-modal-box h3 { font-family: var(--font-display); font-size: 1rem; color: var(--blue-light); margin: 1.2rem 0 .5rem; }
+    .readme-modal-box p  { color: var(--muted); margin-bottom: .6rem; }
+    .readme-modal-box pre {
+      background: rgba(124,58,237,.07);
+      border: 1px solid rgba(168,85,247,.2);
+      border-radius: 8px;
+      padding: .9rem 1rem;
+      overflow-x: auto;
+      margin: .7rem 0;
+    }
+    .readme-modal-box code { color: var(--green); }
+    .readme-modal-box ul  { color: var(--muted); margin-left: 1.2rem; }
+    .readme-modal-box li  { margin-bottom: .3rem; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--navy-mid); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .project-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(124,58,237,.2); border-color: var(--blue-light); }
+    .project-thumb {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-info { padding: 1.3rem; }
+    .project-student {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--muted);
+      margin-bottom: .4rem;
+    }
+    .project-info h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: .5rem;
+    }
+    .project-info p { color: var(--muted); font-size: .85rem; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      padding: .2rem .55rem;
+      border-radius: 5px;
+      background: rgba(124,58,237,.18);
+      color: var(--blue-light);
+    }
+    .project-card-links { display: flex; gap: .6rem; }
+    .project-link {
+      font-size: .78rem;
+      font-weight: 600;
+      padding: .3rem .75rem;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .pl-demo   { background: rgba(52,211,153,.12); color: var(--green); }
+    .pl-demo:hover { background: rgba(52,211,153,.22); }
+    .pl-code   { background: rgba(255,255,255,.07); color: var(--muted); }
+    .pl-code:hover { background: rgba(255,255,255,.15); color: var(--white); }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: #0F0A1E;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex; flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      padding: 0;
+    }
+    .stat {
+      flex: 1; min-width: 180px;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--cyan);
+      display: block; margin-bottom: .3rem;
+      text-shadow: 0 0 20px rgba(192,132,252,.5);
+    }
+    .stat-label { color: var(--muted); font-size: .85rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+      background: var(--navy);
+    }
+    footer a { color: var(--blue-light); text-decoration: none; }
+
+    /* ── IONA BADGE ── */
+    .iona-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(139,26,74,.2));
+      border: 1px solid rgba(168,85,247,.3);
+      border-radius: 100px;
+      padding: .3rem .85rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: .08em;
+    }
+    .iona-badge span { color: var(--cyan); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    IONA<span>ENG</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#lessons">Lessons</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#lessons" class="nav-cta">Start Learning →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="iona-badge">⭐ STEPIONA · <span>Iona University</span> · ENG CLASS</div>
+  <p class="hero-eyebrow">// STEPIONA · ENG</p>
+  <h1>Learn to Code.<br>Build innovate <em>Fun Projects.</em></h1>
+  <p>A semester-long Python course where every student ships a final project. Lessons on GitHub, demos on YouTube, code in your hands.</p>
+  <div class="hero-btns">
+    <a href="#lessons" class="btn-primary">Browse Lessons 2025-2026</a>
+    <a href="#projects" class="btn-secondary">See Final Projects</a>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-bar">
+      <div class="terminal-dot dot-red"></div>
+      <div class="terminal-dot dot-amber"></div>
+      <div class="terminal-dot dot-green"></div>
+      <span class="terminal-title">lesson_01_intro.py</span>
+    </div>
+    <div class="terminal-body" id="terminal"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><span class="stat-num">6</span><span class="stat-label">Lessons</span></div>
+  <div class="stat"><span class="stat-num">99%</span><span class="stat-label">Performance Score</span></div>
+  <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Ideas to Build</span></div>
+</div>
+
+<!-- LESSONS -->
+<section id="lessons">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-eyebrow">// curriculum</p>
+    <h2 class="section-title">Lessons Data Science 2025-2026</h2>
+    <p class="section-sub">Each lesson has a GitHub README with full notes and a video walkthrough. Click README to read the lesson inline, or watch the video.</p>
+    <div class="lessons-grid" id="lessonsGrid"></div>
+  </div>
+  <section id="lessons2">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="section-eyebrow">// curriculum</p>
+      <h2 class="section-title">Lessons Image Processing 2025-2026</h2>
+      <p class="section-sub">Each lesson has a GitHub README with full notes and a video walkthrough. Click README to read the lesson inline, or watch the video.</p>
+      <div class="lessons2-grid" id="lessons2Grid"></div>
+    </div>
+  </section>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-eyebrow">// student work</p>
+    <h2 class="section-title">Final Projects</h2>
+    <p class="section-sub">Every student ships something real at the end of the semester. Here's what this class built.</p>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:var(--navy);">
+  <div style="max-width:680px;margin:0 auto;text-align:center;">
+    <p class="section-eyebrow">// about this class</p>
+    <h2 class="section-title">Built for Builders</h2>
+    <p style="color:var(--muted);margin-bottom:1.5rem;">This is a project-based Python course for beginners. No prior experience needed — just curiosity and a computer. We use real tools (VS Code, GitHub, the terminal) from day one.</p>
+    <p style="color:var(--muted);">All lessons are open source on <a href="https://github.com" style="color:var(--blue-light);">GitHub</a>. Video walkthroughs are on YouTube. Everything is free and stays free.</p>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h4 id="videoModalTitle">Video Lesson</h4>
+      <button class="modal-close" id="closeVideoModal">✕</button>
+    </div>
+    <div class="video-container">
+      <iframe id="videoIframe" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- README MODAL -->
+<div class="modal-overlay" id="readmeModal">
+  <div class="readme-modal-box">
+    <div class="modal-header" style="position:sticky;top:0;background:#0C0820;padding-bottom:.8rem;z-index:1;">
+      <h2 id="readmeModalTitle">README.md</h2>
+      <button class="modal-close" id="closeReadmeModal">✕</button>
+    </div>
+    <div id="readmeContent"></div>
+  </div>
+</div>
+
+<footer>
+  <p>PyClass · All lesson code is open source · <a href="https://github.com/STEPIOAN" target="_blank">GitHub Org</a> · <a href="https://github.com/STEPIONAHIGHSCHOOL" target="_blank">GitHub Org</a> · Built with ❤️ and Python · <span style="color:var(--cyan);">Iona University</span></p>
+</footer>
+
+<script>
+/* ─── LESSONS DATA ─────────────────────────────────────── */ 
+const lessons = [
+  {
+    id: 1, title: "User Input, Strings & If/Else",    
+    badge: "beginner",
+    desc: "Ask the user questions, store text in strings, and make decisions with if/else.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com/STEPIOAN/lesson-1",
+    readme: {
+        title: "Lesson 01 — User Input, Strings & If/Else",
+              content: `
+
+<h3>✨ What You'll Learn</h3>
+
+<ul>
+
+  <li><strong>Input</strong> — How to ask the user for information</li>
+
+  <li><strong>Strings</strong> — How to store and use text in your program</li>
+
+
+
+  <li><strong>Printing</strong> — How to show messages on the screen</li>
+
+
+
+  <li><strong>If/Else</strong> — How to make decisions in your code</li>
+
+</ul>
+
+
+
+<h3>⚙️ How It Works</h3>
+
+<ul>
+
+  <li>The computer asks for your username</li>
+
+  <li>It shows greetings using different ways of combining text</li>
+
+
+
+  <li>You type your favorite color</li>
+
+
+
+  <li>The computer checks if your favorite color matches the program's favorite color
+
+
+
+    <ul>
+
+
+
+      <li>If it matches → it says you like the same color</li>
+
+
+
+      <li>If it doesn't match → it still says your color is awesome</li>
+
+
+
+    </ul>
+
+
+
+  </li>
+
+
+
+</ul>
+
+
+
+<h3>💻 Example Output</h3>
+
+<pre><code>Enter your name: Alice
+Hello Alice!
+What is your favorite color? Blue
+Blue is awesome!</code></pre>
+
+
+
+<h3>🔑 Key Concepts</h3>
+
+<ul>
+  <li><strong>input()</strong> — pauses the program and waits for the user to type: <code>name = input("Enter your name: ")</code></li>
+  <li><strong>Strings</strong> — text wrapped in quotes: <code>"hello"</code></li>
+  <li><strong>Concatenation</strong> — joining strings together: <code>"Hello " + name</code></li>
+  <li><strong>f-strings</strong> — embed variables in strings: <code>f"Hi {name}!"</code></li>
+  <li><strong>if / else</strong> — run different code based on a condition</li>
+
+</ul>
+<h3>💻 Code Example</h3>
+<pre><code># Lesson 1 — User Input, Strings & If/Else
+    # Ask the user to input 
+    username = input("Enter your name:")
+
+    # Store a string in a variable 
+    favorite_color = "Blue"
+    name = "Alex"
+
+    # Combine strings and f-string
+    print("Hello" + name + "!")
+    print(f"Hello {username}, your favorite color could be {favorite_color}!")</code></pre>
+<h3>📎 Lesson Slides</h3>
+<div style="margin-top:.6rem;border-radius:10px;overflow:hidden;border:1px solid rgba(168,85,247,.25);">
+  <iframe src="Presentation.4.pdf" width="100%" height="480" style="display:block;border:none;background:#0C0820;"></iframe>
+    </div>
+<p><a href="https://github.com/user-attachments/files/23137432/Presentation.4.pdf" target="_blank" style="color:var(--cyan);display:inline-flex;align-items:center;gap:.4rem;font-weight:600;">⬇ Download Lesson 1 Presentation (PDF)</a></p>`
+    }
+  },
+  {
+    id: 2, title: "Data Types & Variables",
+    badge: "beginner",
+    desc: "Create and manage a dataset with Python and pandas. Add rows, columns, and save to CSV.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com/STEPIOAN/lesson-2",    
+    readme: {
+      title: "Lesson 02 — DataFrames with pandas",
+      content: `
+<h3>Overview</h3>
+<p>This project demonstrates how to create and manage a simple dataset (DataFrame) using Python and pandas. Each group member is included with their name, age, favorite subject, hobby, and favorite snack.</p>
+<h3>✅ What You'll Do</h3>
+<ul>
+  <li>Create a table (DataFrame) with your own group information</li>
+  <li>Add new students to the table, including your own group members</li>
+  <li>Add a new column that shows each student's hobby</li>
+  <li>Print the full table to see all your data together!</li>
+</ul>
+<h3>Starter Code</h3>
+<pre><code>import pandas as pd
+data = {'Name': ['Naomi', 'Jaden', 'Emmanuel'],
+        'Age': [13,15,12],
+        'Favorite_Subject': ['Science','Math', 'Art']}
+df = pd.DataFrame(data)
+print("Initial DataFrame:", df)
+print("Names of Students:", df['Name'])
+df.loc[len(df)] = ['Andrew', 14, 'Science']
+df.loc[len(df)] = ['Jessica', 15, 'Science']
+print("After Adding a New Student:", df)
+</code></pre>
+`
+    }
+  },
+  {
+    id: 3, title: "Load a CSV Dataset into a pandas DataFrame",
+    badge: "beginner",
+    desc: "Inspect data with .head(), .info(), and .describe(), create a new column, and visualize it with a bar chart and a histogram.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com",
+    readme: {
+      title: "Lesson 03 — Load a CSV Dataset into a pandas DataFrame",
+      content: `
+<h3>🎯 Learning Goals</h3>
+<ul>
+  <li>Load a CSV dataset into a pandas DataFrame</li>
+  <li>Inspect data with <code>.head()</code>, <code>.info()</code>, and <code>.describe()</code></li>
+  <li>Create a new column from an existing one</li>
+  <li>Visualize a categorical column with a bar chart</li>
+  <li>Visualize a numeric column with a histogram</li>
+</ul>
+<h3>💻 Code Example</h3>
+<pre><code>import matplotlib.pyplot as plt
+import pandas as pd
+
+chatbot = pd.read_csv('chatbot.csv')
+print(chatbot.head())
+print(chatbot.info())
+print(chatbot.describe(include='all'))
+
+plt.figure()
+chatbot['intent'].value_counts().plot(kind='bar')
+plt.title("Intent Distribution")
+plt.savefig('intent.png')
+
+chatbot['text_length'] = chatbot['user_input'].str.len()
+plt.figure()
+plt.hist(chatbot['text_length'], bins=20)
+plt.savefig('text length.png')</code></pre>
+`
+    }
+  },
+  {
+    id: 4, title: "NASA Chat — Command-Based Chatbot",
+    badge: "mid",
+    desc: "Build a text chatbot with a command loop: random facts, a mini quiz, and a running counter that changes with each interaction.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com",
+    readme: {
+      title: "Lesson 04 — NASA Chat — Command-Based Chatbot",
+      content: `
+<h3>🎯 Learning Goals</h3>
+<ul>
+  <li>Build a <code>while True:</code> command loop that keeps running until the user quits.</li>
+  <li>Branch on user text with a chain of <code>if / elif / else</code></li>
+  <li>Pick a random response with <code>random.choice()</code></li>
+  <li>Track and update state (a counter) across many loop iterations.</li>
+</ul>
+<h3>💻 Code Example</h3>
+<pre><code>import random
+
+count = 5
+username = input("Enter your username: ")
+print(f"Welcome to NASA Chat, {username}!")
+
+facts = [
+    "The Moon is moving away from Earth at 1.5 inches per year.",
+    "Jupiter has 79 moons.",
+    "Venus is the hottest planet in our solar system.",
+]
+
+while True:
+    userinput = input("You: ").lower()
+    if userinput in ["goodbye", "bye"]:
+        print(f"Goodbye, {username}! 🌌")
+        break
+    elif userinput == "facts about space":
+        fact = random.choice(facts)
+        print(fact)
+        count += 1
+    elif userinput == "space quiz":
+        answer = input("Which planet is known as the Red Planet? ").lower()
+        if answer == "mars":
+            print("Correct! 🚀")
+            count += 2
+        else:
+            print("The answer is Mars!")
+    else:
+        print(f"Type 'help' to see options.")</code></pre>
+`
+    }
+  },
+  {
+    id: 5, title: "Tkinter GUIs — Fruit Market Cart",
+    badge: "mid",
+    desc: "Build a real desktop app with Tkinter: a fruit store with an add-to-cart system, a live order list, and a checkout flow.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com",
+    readme: {
+      title: "Lesson 05 — Tkinter GUIs: Fruit Market Cart",
+      content: `
+<h3>🎯 Learning Goals</h3>
+<ul>
+  <li>Build a windowed app with <code>tkinter</code></li>
+  <li>Use a <code>Listbox</code> to display a live, changing list of items</li>
+  <li>Connect buttons to functions with <code>command=</code> and <code>lambda</code></li>
+  <li>Keep a running total with a shared list and update a label dynamically</li>
+  <li>Use <code>messagebox</code> for warnings and confirmations</li>
+</ul>
+<h3>💻 Code Example</h3>
+<pre><code>import tkinter as tk
+from tkinter import messagebox
+
+products = {"strawberry": 2.00, "mango": 3.00, "banana": 1.50}
+carts = []
+
+def add_cart(item, price):
+    carts.append(price)
+    cart_list.insert(tk.END, f"{item} - \${price:.2f}")
+    total()
+
+def total():
+    total_label.config(text=f"Total: \${sum(carts):.2f}")
+
+root = tk.Tk()
+root.title("Fruitmarket")
+root.geometry("500x550")
+cart_list = tk.Listbox(root, width=40, height=8)
+cart_list.pack()
+total_label = tk.Label(root, text="Total: \$0.00", font=("Arial", 14, "bold"))
+total_label.pack()
+root.mainloop()</code></pre>
+`
+    }
+  },
+  {
+    id: 6, title: "Final Project Week",
+    badge: "advanced",
+    desc: "Ship it. Choose your own project, apply everything you've learned, and present to the class.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com",
+    readme: {
+      title: "Lesson 6 — Final Project",
+      content: `
+<h3>🎯 Project Requirements</h3>
+<ul>
+  <li>Must use at least 3 concepts from the course</li>
+  <li>Hosted on GitHub with a README</li>
+  <li>A working demo (script or web app)</li>
+  <li>5-minute presentation to the class</li>
+</ul>
+<h3>💡 Project Ideas</h3>
+<ul>
+  <li>Weather app using an API</li>
+  <li>Quiz game with a leaderboard saved to a file</li>
+  <li>Personal finance tracker using CSV files</li>
+  <li>Discord / Slack bot</li>
+  <li>Text-based adventure game with classes</li>
+  <li>Web scraper for sports scores or news</li>
+</ul>
+<h3>📅 Timeline</h3>
+<ul>
+  <li><strong>Day 1:</strong> Pitch your idea (1 paragraph + tech plan)</li>
+  <li><strong>Days 2–4:</strong> Build it</li>
+  <li><strong>Day 5:</strong> Present to the class</li>
+</ul>`
+    }
+  },
+];
+
+const lessons2 = [
+  {
+    id: 1, title: "Grayscale & Edge Detection",
+    badge: "beginner",
+    desc: "Load a real photo with OpenCV and turn it into grayscale, blur, and edge-only versions then compare all four in a 2×2 grid with Matplotlib.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com/STEPIOAN/lesson-2",    
+    readme: {
+      title: "Image Processing 01 — Grayscale, Blur & Edge Detection",
+      content: `
+<h3>🎨 Image Processing (Grayscale & Edge Detection)</h3>
+<p>Play with images using <strong>OpenCV</strong> and <strong>Matplotlib</strong>. Turn any picture into black-and-white, blurry, or outline-only.</p>
+<h3>💻 Code Example</h3>
+<pre><code>import cv2
+import matplotlib.pyplot as plt
+
+image = cv2.imread("cat.png")
+image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+blur = cv2.GaussianBlur(image, (25, 25), 0)
+edges = cv2.Canny(gray, 100, 200)
+
+titles = ["Original", "Grayscale", "Blurred", "Edges"]
+images = [image, gray, blur, edges]
+plt.figure(figsize=(10, 8))
+for i in range(4):
+    plt.subplot(2, 2, i + 1)
+    if titles[i] in ["Grayscale", "Edges"]:
+        plt.imshow(images[i], cmap='gray')
+    else:
+        plt.imshow(images[i])
+    plt.title(titles[i])
+    plt.axis("off")
+plt.tight_layout()
+plt.show()</code></pre>`
+    }
+  },
+  {
+    id: 2, title: "Color Channels & Sharpening Kernels",
+    badge: "beginner",
+    desc: "Load an image as a NumPy array, pull out a single color channel, and write your own kernel to sharpen the picture.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com/STEPIOAN/lesson-2",    
+    readme: {
+      title: "Image Processing 02 — Color Channels & Sharpening Kernels",
+      content: `
+<h3>Image Processing (Color Channels & Sharpening Kernels)</h3>
+<p>Learn how computers read images using numbers, how to split colors, and how to sharpen images using a kernel.</p>
+<h3>💻 Code Example</h3>
+<pre><code>import numpy as np
+import cv2
+
+spooky = cv2.imread("polar bear.png")
+gray = cv2.cvtColor(spooky, cv2.COLOR_BGR2GRAY)
+blue_channel = spooky[:, :, 0]
+
+kernel = np.array([[0, -1, 1],
+                   [0, 1, 0],
+                   [1, -1, 1]])
+print(spooky)</code></pre>`
+    }
+  },
+  {
+    id: 3, title: "Tetris Game",
+    badge: "mid",
+    desc: "Build a simple Tetris-style game using logic, loops, and grids.",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    github: "https://github.com/STEPIOAN/lesson-2",    
+    readme: {
+      title: "Tetris Game",
+      content: `
+<h3>Tetris Game</h3>
+<p>Build a simple Tetris-style game using programming logic, loops, and grid manipulation.</p>
+`
+    }
+  },
+];
+
+/* ─── PROJECTS DATA ─── */
+const projects = [
+  {
+    student: "", title: "Steam Store Project",
+    desc: "A text-based game store simulator. Set in 'Steam', it asks for your name, shows available games, lets you buy one, then updates your balance and game library in real time.",
+    emoji: "🎮", color: "#1a0d35",
+    tags: ["String", "Loops", "Game"],
+    award: "Best Game Simulator",
+    code:"Python",
+    demo: "https://github.com",
+  },
+  {
+    student: "", title: "Quiz Quest",
+    desc: "The game asks questions, notifies you when you get it wrong or right. When wrong, the game shows the right answer. When right, you earn a point.",
+    emoji: "🧠", color: "#150d2a",
+    tags: ["GUI", "Game", "Quiz"],
+    award:"Best GUI Quiz",
+    code:"Python",
+    demo: "https://github.com",
+  },
+  {
+    student: "", title: "Caribbean Flight Booking",
+    desc: "A website to book flights to the Caribbean. Log in, choose your seat class, number of tickets, and departure date.",
+    emoji: "✈️", color: "#0d1a1a",
+    tags: ["Travel", "GUI", "Login"],
+    award: "",
+    code:"Python",
+    demo: "https://github.com",
+  },
+  {
+    student: "", title: "Abby's Shopping Lists",
+    desc: "Shopping list made for different users, who can choose their own makeup or nails.",
+    emoji: "🛍️", color: "#1a0d2a",
+    award:"",
+    tags: ['Shopping', 'GUI', 'Lists'],
+    code:"Python",
+    demo: "https://github.com",
+  },
+  {
+    student: "", title: "Information Bank",
+    desc: "A smart information storage and retrieval app with login and error handling.",
+    emoji: "⚡", color: "#1a100d",
+    tags: ["AI", "Login", "Error Handling"],
+    award: "",
+    demo: "https://github.com",
+  }
+];
+
+/* ─── RENDER LESSONS ─── */
+const badgeLabel = { beginner: "● Beginner", mid: "● Intermediate", advanced: "● Advanced" };
+const lessonsGrid = document.getElementById("lessonsGrid");
+lessons.forEach(l => {
+  const card = document.createElement("div");
+  card.className = "lesson-card";
+  card.innerHTML = `
+    <span class="lesson-badge badge-${l.badge}">${badgeLabel[l.badge]}</span>
+    <h3>Lesson ${String(l.id).padStart(2,"0")} — ${l.title}</h3>
+    <p>${l.desc}</p>
+    <div class="lesson-links">
+      <a href="${l.github}" target="_blank" class="lesson-link link-github">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <button class="lesson-link link-readme" onclick="openReadme(${l.id})">📄 README</button>
+      <button class="lesson-link link-video" onclick="openVideo(${l.id})">▶ Video</button>
+    </div>`;
+  lessonsGrid.appendChild(card);
+});
+
+const lessons2Grid = document.getElementById("lessons2Grid");
+lessons2.forEach(l => {
+  const card = document.createElement("div");
+  card.className = "lesson2-card";
+  card.innerHTML = `
+    <span class="lesson2-badge badge-${l.badge}">${badgeLabel[l.badge]}</span>
+    <h3>Lesson ${String(l.id).padStart(2,"0")} — ${l.title}</h3>
+    <p>${l.desc}</p>
+    <div class="lesson2-links">
+      <a href="${l.github}" target="_blank" class="lesson2-link link-github">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <button class="lesson2-link link-readme" onclick="openReadme2(${l.id})">📄 README</button>
+      <button class="lesson2-link link-video" onclick="openVideo2(${l.id})">▶ Video</button>
+    </div>`;
+  lessons2Grid.appendChild(card);
+});
+
+/* ─── RENDER PROJECTS ─── */
+const projectsGrid = document.getElementById("projectsGrid");
+projects.forEach(p => {
+  const card = document.createElement("div");
+  card.className = "project-card";
+  card.innerHTML = `
+    <div class="project-thumb" style="background:${p.color};">${p.emoji}</div>
+    <div class="project-info">
+      <p class="project-student">👤 ${p.student}</p>
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      ${p.award ? `<div style="font-size:.78rem;color:var(--gold);margin-bottom:.6rem;">🏆 ${p.award}</div>` : ""}
+      <p style="font-family:var(--font-mono);font-size:.72rem;color:var(--muted);">${p.code || ''}</p>
+      <div class="project-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+      <div class="project-card-links">
+        <a href="${p.demo}" target="_blank" class="project-link pl-demo">▶ Demo</a>
+      </div>
+    </div>`;
+  projectsGrid.appendChild(card);
+});
+
+/* ─── VIDEO MODAL ─── */
+function openVideo(id) {
+  const l = lessons.find(x => x.id === id);
+  document.getElementById("videoModalTitle").textContent = `Lesson ${id} — ${l.title}`;
+  document.getElementById("videoIframe").src = l.video + "?autoplay=1";
+  document.getElementById("videoModal").classList.add("active");
+}
+function openVideo2(id) {
+  const l = lessons2.find(x => x.id === id);
+  document.getElementById("videoModalTitle").textContent = `Lesson ${id} — ${l.title}`;
+  document.getElementById("videoIframe").src = l.video + "?autoplay=1";
+  document.getElementById("videoModal").classList.add("active");
+}
+document.getElementById("closeVideoModal").onclick = () => {
+  document.getElementById("videoModal").classList.remove("active");
+  document.getElementById("videoIframe").src = "";
+};
+document.getElementById("videoModal").addEventListener("click", e => {
+  if (e.target === document.getElementById("videoModal")) {
+    document.getElementById("videoModal").classList.remove("active");
+    document.getElementById("videoIframe").src = "";
+  }
+});
+
+/* ─── README MODAL ─── */
+function openReadme(id) {
+  const l = lessons.find(x => x.id === id);
+  document.getElementById("readmeModalTitle").textContent = l.readme.title;
+  document.getElementById("readmeContent").innerHTML = l.readme.content;
+  document.getElementById("readmeModal").classList.add("active");
+}
+function openReadme2(id) {
+  const l = lessons2.find(x => x.id === id);
+  document.getElementById("readmeModalTitle").textContent = l.readme.title;
+  document.getElementById("readmeContent").innerHTML = l.readme.content;
+  document.getElementById("readmeModal").classList.add("active");
+}
+document.getElementById("closeReadmeModal").onclick = () => {
+  document.getElementById("readmeModal").classList.remove("active");
+};
+document.getElementById("readmeModal").addEventListener("click", e => {
+  if (e.target === document.getElementById("readmeModal"))
+    document.getElementById("readmeModal").classList.remove("active");
+});
+
+/* ─── TERMINAL ANIMATION ─── */
+const lines = [
+  { text: "# Welcome to Iona ENG Class 🐍", cls: "t-comment" },
+  { text: "" },
+  { text: '<span class="t-keyword">def</span> <span class="t-fn">build_something</span>(idea):' },
+  { text: '    skills = <span class="t-string">"Python, Git, APIs"</span>' },
+  { text: '    weeks  = <span class="t-num">12</span>' },
+  { text: '    <span class="t-keyword">return</span> idea + <span class="t-string">" — shipped!"</span>' },
+  { text: "" },
+  { text: 'result = build_something(<span class="t-string">"your project"</span>)' },
+  { text: '<span class="t-fn">print</span>(result)' },
+  { text: "" },
+  { text: '<span class="t-out">▶  your project — shipped!</span>' },
+];
+const terminal = document.getElementById("terminal");
+let lineIdx = 0;
+
+function typeLine(line, cb) {
+  const div = document.createElement("div");
+  terminal.insertBefore(div, document.getElementById("cursor") || null);
+  if (!line.text) { div.innerHTML = "&nbsp;"; cb && cb(); return; }
+  let i = 0;
+  const full = line.text;
+  const stripped = full.replace(/<[^>]+>/g, "");
+  function step() {
+    if (i <= stripped.length) {
+      div.textContent = stripped.slice(0, i);
+      i++;
+      setTimeout(step, 28 + Math.random() * 18);
+    } else {
+      div.innerHTML = full;
+      if (line.cls) div.className = line.cls;
+      cb && cb();
+    }
+  }
+  step();
+}
+
+const cursor = document.createElement("span");
+cursor.id = "cursor";
+terminal.appendChild(cursor);
+
+function nextLine() {
+  if (lineIdx >= lines.length) return;
+  typeLine(lines[lineIdx], () => { lineIdx++; setTimeout(nextLine, 80); });
+}
+setTimeout(nextLine, 600);
+</script>
+</body>
+</html>
